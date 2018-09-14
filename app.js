@@ -18,22 +18,21 @@ var blogSchema = new mongoose.Schema({
 var Blog = mongoose.model("Blog", blogSchema);
 	
 //Restful Routes
-
-app.get("/",function(req, res){
+app.get("/", function(req,res){
 	res.redirect("/blogs");
-	
 });
 
-app.get("/blogs", function(req, res){
+app.get("/blogs",function(req, res){
 	Blog.find({}, function(err, blogs){
-		if(err){
-			console.log(err);
+		if (err) {
+			console.log("Error");
 		}
 		else{
-			res.render("index",{blogs: blogs})
+			res.render("index",{blogs: blogs});
 		}
 	});
 });
+
 
 
 app.listen(3000, function(req, res){
