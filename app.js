@@ -21,7 +21,7 @@ var Blog = mongoose.model("Blog", blogSchema);
 app.get("/", function(req,res){
 	res.redirect("/blogs");
 });
-
+//Index Route
 app.get("/blogs",function(req, res){
 	Blog.find({}, function(err, blogs){
 		if (err) {
@@ -32,7 +32,22 @@ app.get("/blogs",function(req, res){
 		}
 	});
 });
-
+//New route
+app.get("/blogs/new",function(req, res){
+	res.render("new");
+})
+//Create route
+app.post("/blogs",function(req, res){
+	//create blog
+	Blog.create(req.body.blog, function(err, newBlog){
+		if(err){
+			res.render("new");
+		}
+		else{
+			res.redirect("/blogs");
+		}
+	})
+});
 
 
 app.listen(3000, function(req, res){
