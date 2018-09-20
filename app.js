@@ -84,7 +84,21 @@ app.put("/blogs/:id", function(req, res){
 		}
 	});
 });
+//Delete route
+app.delete("/blogs/:id", function(req, res){
+	Blog.findByIdAndRemove(req.params.id, function(err){
+		if (err) {
+			res.redirect("/blogs");
+		}
+		else{
+			res.redirect("/blogs");
+		}
+	});
+});
+
 app.listen(3000, function(req, res){
 	console.log("Blog_App is running on sever 3000");
 });
+
+
 		
