@@ -49,6 +49,17 @@ app.post("/blogs",function(req, res){
 	})
 });
 
+//Show route
+app.get("/blogs/:id",function(req, res){
+	Blog.findById(req.params.id, function(err, foundBlog){
+		if(err){
+			res.redirect("/blogs");
+		}
+		else{
+			res.render("show",{blog: foundBlog});
+		}
+	});
+});
 
 app.listen(3000, function(req, res){
 	console.log("Blog_App is running on sever 3000");
